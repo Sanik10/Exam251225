@@ -15,11 +15,24 @@ export default function Slider() {
 
   return (
     <div className="slider">
-      <button className="btn" type="button" onClick={prev}>Назад</button>
+      <button className="sliderBtn" type="button" onClick={prev}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
       <div className="slide">
-        <img src={slides[idx]} alt="slide" />
+        <img src={slides[idx]} alt={`Слайд ${idx + 1}`} />
+        <div className="slideIndicators">
+          {slides.map((_, i) => (
+            <div key={i} className={i === idx ? "indicator active" : "indicator"} onClick={() => setIdx(i)} />
+          ))}
+        </div>
       </div>
-      <button className="btn" type="button" onClick={next}>Вперед</button>
+      <button className="sliderBtn" type="button" onClick={next}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function NewApplication() {
 
   const [course_name, setCourse] = useState(courses[0]);
   const [start_date, setDate] = useState("");
-  const [payment, setPayment] = useState("cash"); // cash | transfer
+  const [payment, setPayment] = useState("cash");
   const [errMsg, setErrMsg] = useState("");
 
   const onSubmit = async (e) => {
@@ -29,16 +29,16 @@ export default function NewApplication() {
   };
 
   return (
-    <div className="page">
+    <div className="page formPage">
       <div className="header">
         <div>
-          <h1 className="title">Формирование заявки</h1>
+          <Link to="/" className="logo">Корочки.есть</Link>
           <p className="subtitle">Выбери курс, дату начала и способ оплаты.</p>
         </div>
         <Link className="btn ghost" to="/applications">Назад</Link>
       </div>
 
-      <form className="card" onSubmit={onSubmit}>
+      <form className="card formCard" onSubmit={onSubmit}>
         <div className="sectionTitle">Данные заявки</div>
 
         <label>

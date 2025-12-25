@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { api, clearAuth } from "../services/api";
 
 const statuses = ["Новая", "Идет обучение", "Обучение завершено"];
@@ -48,7 +48,7 @@ export default function Admin() {
     <div className="page">
       <div className="topbar">
         <div>
-          <h1 className="title">Админ‑панель</h1>
+          <Link to="/" className="logo">Корочки.есть</Link>
           <p className="subtitle">Просмотр всех заявок и смена статуса.</p>
         </div>
         <button className="btn" onClick={logout}>Выйти</button>
@@ -68,6 +68,16 @@ export default function Admin() {
 
             <div><b>ФИО:</b> {a.full_name}</div>
             <div><b>Курс:</b> {a.course_name}</div>
+
+            {a.review_text && (
+              <>
+                <div className="hr" />
+                <div className="reviewBlock">
+                  <div className="small">Отзыв пользователя</div>
+                  <div className="reviewText">{a.review_text}</div>
+                </div>
+              </>
+            )}
 
             <div className="hr" />
 

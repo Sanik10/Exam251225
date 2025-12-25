@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Slider from "../components/Slider";
 import { api, setAuth } from "../services/api";
 
 export default function Login() {
@@ -24,17 +23,15 @@ export default function Login() {
   };
 
   return (
-    <div className="page">
+    <div className="page authPage">
       <div className="header">
         <div>
-          <h1 className="title">Корочки.есть</h1>
+          <Link to="/" className="logo">Корочки.есть</Link>
           <p className="subtitle">Вход в систему записи на онлайн‑курсы.</p>
         </div>
       </div>
 
-      <Slider />
-
-      <form className="card" onSubmit={onSubmit}>
+      <form className="card authCard" onSubmit={onSubmit}>
         <div className="sectionTitle">Авторизация</div>
 
         <label>

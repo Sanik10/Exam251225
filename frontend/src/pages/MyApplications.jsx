@@ -52,7 +52,7 @@ export default function MyApplications() {
     <div className="page">
       <div className="topbar">
         <div>
-          <h1 className="title">Мои заявки</h1>
+          <Link to="/" className="logo">Корочки.есть</Link>
           <p className="subtitle">Список заявок и отзывы после завершения обучения.</p>
         </div>
         <button className="btn" onClick={logout}>Выйти</button>
@@ -98,6 +98,13 @@ export default function MyApplications() {
             >
               Сохранить отзыв
             </button>
+
+            {a.review_text && (
+              <div className="reviewSaved">
+                <div className="reviewTitle">Текущий отзыв</div>
+                <div className="reviewText">{a.review_text}</div>
+              </div>
+            )}
           </div>
         ))}
 

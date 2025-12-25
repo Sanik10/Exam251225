@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Slider from "../components/Slider";
 import { api } from "../services/api";
 
 export default function Register() {
@@ -19,6 +18,21 @@ export default function Register() {
 
   const onChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
+  const onPhoneChange = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+    
+    let formatted = "";
+    if (value.length > 0) {
+      formatted = value[0];
+      if (value.length > 1) formatted += "(" + value.slice(1, 4);
+      if (value.length > 4) formatted += ")" + value.slice(4, 7);
+      if (value.length > 7) formatted += "-" + value.slice(7, 9);
+      if (value.length > 9) formatted += "-" + value.slice(9, 11);
+    }
+    setForm((p) => ({ ...p, phone: formatted }));
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
@@ -35,28 +49,26 @@ export default function Register() {
   };
 
   return (
-    <div className="page">
+    <div className="page authPage">
       <div className="header">
         <div>
-          <h1 className="title">Регистрация</h1>
+          <Link to="/" className="logo">Корочки.есть</Link>
           <p className="subtitle">Создай аккаунт для подачи заявок на обучение.</p>
         </div>
       </div>
 
-      <Slider />
-
-      <form className="card" onSubmit={onSubmit}>
+      <form className="card authCard" onSubmit={onSubmit}>
         <div className="sectionTitle">Данные пользователя</div>
 
         <label>
           Логин
-          <input name="login" value={form.login} onChange={onChange} placeholder="latin+digits, >=6" />
+          <input name="login" value={form.login} onChange={onChange} placeholder="example123" />
           {errors.login && <div className="err">{errors.login}</div>}
         </label>
 
         <label>
           Пароль
-          <input type="password" name="password" value={form.password} onChange={onChange} placeholder=">=8" />
+          <input type="password" name="password" value={form.password} onChange={onChange} placeholder="минимум 8 символов" />
           {errors.password && <div className="err">{errors.password}</div>}
         </label>
 
@@ -68,7 +80,7 @@ export default function Register() {
 
         <label>
           Телефон
-          <input name="phone" value={form.phone} onChange={onChange} placeholder="8(XXX)XXX-XX-XX" />
+          <input name="phone" value={form.phone} onChange={onPhoneChange} placeholder="8(XXX)XXX-XX-XX" />
           {errors.phone && <div className="err">{errors.phone}</div>}
         </label>
 

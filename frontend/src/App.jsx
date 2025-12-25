@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyApplications from "./pages/MyApplications";
@@ -11,7 +12,7 @@ import Admin from "./pages/Admin";
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/" element={<Home />} />
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
